@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          WaniKani More Details in SRS Popover
+// @name          WaniKani Show Specific SRS Level in Reviews
 // @namespace     https://www.wanikani.com
 // @description   Show "Apprentice 3" instead of "Apprentice", etc.
 // @author        seanblue
