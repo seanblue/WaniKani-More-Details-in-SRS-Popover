@@ -3,19 +3,21 @@
 // @namespace     https://www.wanikani.com
 // @description   Show "Apprentice 3" instead of "Apprentice", etc.
 // @author        seanblue
-// @version       1.0.0
+// @version       1.0.1
 // @include       *://www.wanikani.com/review/session*
 // @grant         none
 // ==/UserScript==
 
+const eventPrefix = 'seanblue.show_specific_srs.';
+
 // Catch additional events.
 // http://viralpatel.net/blogs/jquery-trigger-custom-event-show-hide-element/
-(function($) {$.each(['hide'], function(i, ev) { var el = $.fn[ev]; $.fn[ev] = function() { this.trigger(ev); return el.apply(this, arguments); }; }); })(jQuery);
+(function($) {$.each(['hide'], function(i, ev) { var el = $.fn[ev]; $.fn[ev] = function() { this.trigger(eventPrefix + ev); return el.apply(this, arguments); }; }); })(jQuery);
 
 (function() {
 	'use strict';
 
-	var style =
+	const style =
 		'<style>' +
 			'.srs .srs-up.srs-apprentice1:after,.srs .srs-down.srs-apprentice1:after { content: \'Apprentice 1\' }' +
 			'.srs .srs-up.srs-apprentice2:after,.srs .srs-down.srs-apprentice2:after { content: \'Apprentice 2\' }' +
@@ -55,7 +57,7 @@
 	}
 
 	(function() {
-		$('#loading:visible').on('hide', function() {
+		$('#loading:visible').on(eventPrefix + 'hide', function() {
 			addCss();
 			updateSrsNames();
 		});
